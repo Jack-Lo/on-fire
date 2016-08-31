@@ -1,0 +1,24 @@
+{
+  "name": "on-fire",
+  "version": "0.1.0",
+  "description": "一个简单的事件订阅发布系统。",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./build/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jack-Lo/on-fire.git"
+  },
+  "keywords": [
+    "on",
+    "fire",
+    "on-fire"
+  ],
+  "author": "jack lo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jack-Lo/on-fire/issues"
+  },
+  "homepage": "https://github.com/jack-Lo/on-fire#readme"
+}
