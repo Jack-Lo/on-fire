@@ -1,6 +1,14 @@
 # on-fire
 一个简单的事件订阅发布系统。
 
+### install
+
+```shell
+npm install on-fire --save
+```
+
+
+
 ### api  
 
 1. **on** 用于订阅事件
