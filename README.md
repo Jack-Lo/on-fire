@@ -20,7 +20,8 @@ npm install on-fire --save
 ### 用法  
 
 ```javascript
-var onFire = require('./on-fire')
+var Event = require('./on-fire')
+var onFire = new Event()
 var on = onFire.on
 var fire = onFire.fire
 
@@ -42,4 +43,5 @@ document.getElementById('btn').onclick = function () {
 ### log  
 
 0.1.0 - publish  
+0.1.5 - 将原来返回实例的设计修改为返回函数本身  
 
