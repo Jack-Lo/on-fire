@@ -25,4 +25,4 @@ function onFire () {
   }
 }
 
-module.exports = new onFire
+module.exports = onFire
