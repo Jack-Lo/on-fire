@@ -1,6 +1,6 @@
 require('../sass/index')
 var Event = require('../../../index')
-var onFire = new Event
+var onFire = new Event()
 var on = onFire.on
 var fire = onFire.fire
 
