@@ -1,47 +1,109 @@
-# on-fire
+## 简介
+
 一个简单的事件订阅发布系统。
 
-### install
+
+## Install
 
 ```shell
 npm install on-fire --save
 ```
 
 
+## Api
 
-### api  
+Api  |  含义  |  入参  |  返回值
+-----|-------|--------|-------
+on  |  订阅事件  |  `{string} event`, `{Function} handler`  |  `{number} id`，用于取消订阅
+off  |  取消事件订阅  |  `{string} event`, `{number} id`  |  -
+emit  |  触发事件  |  `{string} event`, `[{any} result]`  |  -
+once  |  一次性事件监听，触发完后自行移除监听  |  `{string} event`, `{Function} handler`  |  `{number} id`，用于取消订阅
 
-1. **on** 用于订阅事件
-2. **fire** 用于触发/发布事件
-3. **handler** 事件集合
 
+## Usage
 
-
-### 用法  
+首先，引入：
 
 ```javascript
-var Event = require('./on-fire')
-var onFire = new Event()
-var on = onFire.on
-var fire = onFire.fire
-
-on('test', function (res) {
-  console.log('this is a ' + res)
-})
-
-console.log(onFire.handler)
-
-fire('test', 'test')
-
-document.getElementById('btn').onclick = function () {
-  fire('test', 'test by click')
-}
+import Bus from 'on-fire'
 ```
 
+或者是
 
+```javascript
+var Bus = require('on-fire')
+```
 
-### log  
+实例化一个事件总线：
 
-0.1.0 - publish  
-0.1.5 - 将原来返回实例的设计修改为返回函数本身  
+```javascript
+var bus = new Bus()
+```
+
+紧接着，我们监听一个`greet`事件：
+
+```javascript
+var greetId1 = bus.on('greet', (res) => {
+  var greeting = 'Hello, ' + res + '!'
+
+  console.log(greeting)
+})
+```
+
+当然，我们可以对同一个事件进行多次订阅：
+
+```javascript
+var greetId2 = bus.on('greet', (res) => {
+  var greeting = 'Good morning, ' + res + '!'
+
+  console.log(greeting)
+})
+```
+
+然后，我们来触发`greet`事件：
+
+```javascript
+bus.emit('greet', 'Jack')
+
+// > Hello, Jack!
+// > Good morning, Jack!
+```
+
+现在，我们来试着移除监听：
+
+```javascript
+bus.off('greet', greetId2)
+bus.emit('greet', 'Jack')
+
+// > Hello, Jack!
+```
+
+我们发现只有一个输出，说明我们已经成功移除了第二个订阅事件！
+
+接下来我们试着实现一次性订阅，也就是当监听函数被触发过一次之后，便自动移除：  
+
+```javascript
+var oneTimeId = bus.on('one_time', () => {
+  console.log('I will show this message just one time.')
+  bus.off('one_time', oneTimeId)
+})
+
+bus.emit('one_time')
+bus.emit('one_time')
+
+// > I will show this message just one time.
+```
+
+事实上，`once`便是用来实现以上功能的，以下是等价实现：
+
+```javascript
+bus.once('one_time', () => {
+  console.log('I will show this message just one time.')
+})
+
+bus.emit('one_time')
+bus.emit('one_time')
+
+// > I will show this message just one time.
+```
 
