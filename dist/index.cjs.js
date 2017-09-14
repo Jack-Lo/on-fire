@@ -55,8 +55,8 @@ var Bus = function () {
       }
     }
   }, {
-    key: "emit",
-    value: function emit(type) {
+    key: "fire",
+    value: function fire(type) {
       var _t = this;
 
       if (type in _t._handlerMap) {

@@ -29,9 +29,9 @@ describe('Class', function() {
     })
   })
 
-  describe('#prototype.emit', function() {
-    it(`Bus.prototype.emit is a type of function.`, function() {
-      assert.equal(true, typeof Bus.prototype.emit === 'function')
+  describe('#prototype.fire', function() {
+    it(`Bus.prototype.fire is a type of function.`, function() {
+      assert.equal(true, typeof Bus.prototype.fire === 'function')
     })
   })
 })
@@ -61,9 +61,9 @@ describe('Instance', function() {
     })
   })
 
-  describe('#emit', function() {
-    it(`bus.emit is a type of function.`, function() {
-      assert.equal(true, typeof bus.emit === 'function')
+  describe('#fire', function() {
+    it(`bus.fire is a type of function.`, function() {
+      assert.equal(true, typeof bus.fire === 'function')
     })
   })
 

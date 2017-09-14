@@ -24,7 +24,7 @@ class Bus {
     }
   }
 
-  emit (type, ...args) {
+  fire (type, ...args) {
     var _t = this
 
     if (type in _t._handlerMap) {

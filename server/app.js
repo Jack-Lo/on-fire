@@ -17,9 +17,9 @@ bus.once('once', () => {
   console.log('once')
 })
 
-bus.emit('test')
-bus.emit('test')
-bus.emit('once')
-bus.emit('once')
+bus.fire('test')
+bus.fire('test')
+bus.fire('once')
+bus.fire('once')
 
 console.log(bus)

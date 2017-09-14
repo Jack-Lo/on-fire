@@ -16,7 +16,7 @@ Api  |  含义  |  入参  |  返回值
 -----|-------|--------|-------
 on  |  订阅事件  |  `{string} event`, `{Function} handler`  |  `{number} id`，用于取消订阅
 off  |  取消事件订阅  |  `{string} event`, `{number} id`  |  -
-emit  |  触发事件  |  `{string} event`, `[{any} result]`  |  -
+fire  |  触发事件  |  `{string} event`, `[{any} result]`  |  -
 once  |  一次性事件监听，触发完后自行移除监听  |  `{string} event`, `{Function} handler`  |  `{number} id`，用于取消订阅
 
 
@@ -63,7 +63,7 @@ var greetId2 = bus.on('greet', (res) => {
 然后，我们来触发`greet`事件：
 
 ```javascript
-bus.emit('greet', 'Jack')
+bus.fire('greet', 'Jack')
 
 // > Hello, Jack!
 // > Good morning, Jack!
@@ -73,7 +73,7 @@ bus.emit('greet', 'Jack')
 
 ```javascript
 bus.off('greet', greetId2)
-bus.emit('greet', 'Jack')
+bus.fire('greet', 'Jack')
 
 // > Hello, Jack!
 ```
@@ -88,8 +88,8 @@ var oneTimeId = bus.on('one_time', () => {
   bus.off('one_time', oneTimeId)
 })
 
-bus.emit('one_time')
-bus.emit('one_time')
+bus.fire('one_time')
+bus.fire('one_time')
 
 // > I will show this message just one time.
 ```
@@ -101,8 +101,8 @@ bus.once('one_time', () => {
   console.log('I will show this message just one time.')
 })
 
-bus.emit('one_time')
-bus.emit('one_time')
+bus.fire('one_time')
+bus.fire('one_time')
 
 // > I will show this message just one time.
 ```
